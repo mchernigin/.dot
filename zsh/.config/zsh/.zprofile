@@ -32,6 +32,11 @@ export STACK_ROOT="$XDG_DATA_HOME/stack"
 export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 export SQLITE_HISTORY="$XDG_DATA_HOME/sqlite_history"
 
+# ncurses
+export TERMINFO="$XDG_DATA_HOME/terminfo"
+export TERMINFO_DIRS="$XDG_DATA_HOME/terminfo:/usr/share/terminfo"
+
+# Go
 export GOPATH="$XDG_DATA_HOME/go"
 
 # Rust
@@ -40,14 +45,11 @@ export CARGO_HOME="$XDG_DATA_HOME/cargo"
 source "$CARGO_HOME/env"
 export PATH="$PATH:$CARGO_HOME/bin"
 
-# ncurses
-export TERMINFO="$XDG_DATA_HOME/terminfo"
-export TERMINFO_DIRS="$XDG_DATA_HOME/terminfo:/usr/share/terminfo"
-
 # Javascript
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export NVM_DIR="$XDG_DATA_HOME/nvm"
 
+# Rye
 export RYE_HOME="$XDG_DATA_HOME/rye"
 source "$RYE_HOME/env"
 
