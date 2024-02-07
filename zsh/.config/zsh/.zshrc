@@ -17,11 +17,12 @@ PROMPT='%F{blue}%1~%f %F{red}${vcs_info_msg_0_}%f󰅂 '
 
 # History settings
 HISTFILE=~/.cache/zsh/histfile
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=10000
+SAVEHIST=10000
 
 # Case insensitive search
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' rehash true
 
 # Search history with up and down arrows
 bindkey '^[[A' up-line-or-search
