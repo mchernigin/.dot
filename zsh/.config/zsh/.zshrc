@@ -4,6 +4,8 @@ alias l="ls"
 alias la="ls -a"
 alias ll="ls -lh"
 alias lla="la -lh"
+export EXA_ICON_SPACING=2
+
 alias lg="lazygit"
 
 # Setup prompt
