@@ -1,0 +1,53 @@
+* {
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family: "IosevkaTerm Nerd Font", sans-serif;
+    font-size: 14px;
+    color: #b4befe;
+}
+
+window#waybar {
+    background-color: transparent;
+}
+
+#workspaces,
+#clock,
+#pulseaudio,
+#memory,
+#cpu,
+#battery,
+#disk,
+#tray {
+    padding: 0 15px;
+    border-radius: 50px;
+    background-color: #0A0E14;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+#workspaces {
+  margin-left: 10px;
+  padding: 0;
+}
+
+#workspaces button {
+    margin: 4px;
+    border: none;
+    border-radius: 15px;
+}
+
+#workspaces button:hover {
+    background-color: #B4BEFE;
+}
+
+#workspaces button:hover label {
+    color: #0A0E14;
+}
+
+#workspaces button.active {
+    background-color: #B4BEFE;
+}
+
+#workspaces button.active label {
+    color: #0A0E14;
+}
+
