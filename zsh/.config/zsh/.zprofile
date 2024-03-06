@@ -1,6 +1,7 @@
 export SHELL="/bin/zsh"
 export EDITOR="nvim"
 export LANG="en_US.UTF-8"
+export TERM="xterm-256color"
 
 # Bin
 export PATH="$HOME/.local/bin:$PATH"
@@ -48,6 +49,7 @@ export PATH="$PATH:$CARGO_HOME/bin"
 # Javascript
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export NVM_DIR="$XDG_DATA_HOME/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # Rye
 export RYE_HOME="$XDG_DATA_HOME/rye"
