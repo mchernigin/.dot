@@ -49,7 +49,3 @@ export PATH="$PATH:$CARGO_HOME/bin"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export NVM_DIR="$XDG_DATA_HOME/nvm"
 
-# Rye
-export RYE_HOME="$XDG_DATA_HOME/rye"
-source "$RYE_HOME/env"
-

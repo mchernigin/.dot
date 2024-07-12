@@ -1,5 +1,9 @@
+if [[ -z "$PROFILE_SOURCED" ]]; then
+    source "$ZDOTDIR/.zprofile"
+fi
+
 # Aliases
-alias ls="exa --icons"
+alias ls="exa --icons --sort Name"
 alias l="ls"
 alias la="ls -a"
 alias ll="ls -lh"
