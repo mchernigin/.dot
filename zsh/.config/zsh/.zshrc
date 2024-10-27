@@ -1,6 +1,4 @@
-if [[ -z "$PROFILE_SOURCED" ]]; then
-    source "$ZDOTDIR/.zprofile"
-fi
+source $ZDOTDIR/.zprofile
 
 # Aliases
 alias ls="exa --icons --sort Name"
@@ -9,8 +7,6 @@ alias la="ls -a"
 alias ll="ls -lh"
 alias lla="la -lh"
 export EXA_ICON_SPACING=2
-
-alias lg="lazygit"
 
 # Setup prompt
 autoload -Uz vcs_info
@@ -41,9 +37,3 @@ _comp_options+=(globdots)
 
 # Enable syntax highlighting
 source $ZDOTDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# Enable fzf support in ZSH
-[ -f /usr/share/fzf/shell/key-bindings.zsh ] && source /usr/share/fzf/shell/key-bindings.zsh
-
-# Enable zoxide
-eval "$(zoxide init zsh)"
