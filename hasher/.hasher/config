@@ -1,0 +1,3 @@
+packager="`rpm --eval %packager`"
+no_sisyphus_check="packager,buildhost,gpg"
+allowed_mountpoints=/proc
