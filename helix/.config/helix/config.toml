@@ -10,3 +10,9 @@ color-modes = true
 insert = "bar"
 normal = "block"
 select = "block"
+
+[editor.indent-guides]
+render = true
+
+[keys.normal]
+C-x = ":reflow"

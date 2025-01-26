@@ -1,3 +1,27 @@
 [[language]]
+name = "toml"
+file-types = ["edition", "component", "backend", "object"]
+
+[[language]]
 name = "rust"
 auto-format = true
+
+[[language]]
+name = "python"
+roots = [".", "pyproject.toml", "pyrightconfig.json"]
+language-servers = ["pyright"]
+auto-format = true
+
+[language-server.pyright]
+command = "pyright-langserver"
+args = ["--stdio"]
+
+[language-server.pyright.config]
+reportMissingTypeStubs = false
+
+[language.formatter]
+command = "ruff"
+args = [
+  "format",
+  "-"
+]
