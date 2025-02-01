@@ -1,4 +1,5 @@
-theme = catppuccin-macchiato
-font-family = Iosevka Nerd Font
+theme = flexoki-dark
+background = #100F0F
+font-family = FiraCode Nerd Font
 font-size = 16
 window-theme = ghostty
