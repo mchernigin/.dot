@@ -1,12 +1,9 @@
-source $ZDOTDIR/.zprofile
+. ~/.profile
 
-# Aliases
-alias ls="exa --icons --sort Name"
+alias ls="eza --icons"
 alias l="ls"
-alias la="ls -a"
-alias ll="ls -lh"
-alias lla="la -lh"
-export EXA_ICON_SPACING=2
+alias la="ls -A"
+alias ll="ls -lA"
 
 # Setup prompt
 autoload -Uz vcs_info
@@ -36,4 +33,8 @@ compinit
 _comp_options+=(globdots)
 
 # Enable syntax highlighting
-source $ZDOTDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+hightlight_file=$ZDOTDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[ ! -f $hightlight_file ] || source $hightlight_file
+
+fzf_file=/usr/share/fzf/shell/key-bindings.zsh
+[ ! -f $fzf_file ] || source $fzf_file
