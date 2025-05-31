@@ -17,6 +17,8 @@ export LESSKEY="$XDG_CONFIG_HOME/less/lesskey"
 export LESSHISTFILE=-
 export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 
+export PATH="$PATH:$HOME/.local/bin"
+
 # ncurses
 export TERMINFO="$XDG_DATA_HOME/terminfo"
 export TERMINFO_DIRS="$XDG_DATA_HOME/terminfo:/usr/share/terminfo"
@@ -37,3 +39,7 @@ export PATH="$PATH:$GOPATH/bin"
 
 # Python
 export RYE_HOME="$XDG_DATA_HOME/rye"
+
+if [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
+	exec river
+fi
