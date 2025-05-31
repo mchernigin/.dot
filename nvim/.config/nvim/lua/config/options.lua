@@ -1,6 +1,3 @@
-vim.cmd.colorscheme('flexoki-dark')
--- vim.cmd.colorscheme('flexoki-light')
-
 vim.opt.number = true
 vim.opt.relativenumber = true
 
