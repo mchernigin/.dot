@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # This is the example configuration file for river.
 #
@@ -10,8 +10,10 @@
 
 # Note: the "Super" modifier is also known as Logo, GUI, Windows, Mod4, etc.
 
-riverctl map normal Super+Shift Return spawn "ghostty"
-riverctl map normal Super+Shift B spawn "firefox"
+riverctl map normal Super D spawn "my_bemenu run"
+
+riverctl map normal Super+Shift Return spawn foot
+riverctl map normal Super+Shift B spawn "brave-browser"
 
 # Super+Q to close the focused view
 riverctl map normal Super Q close
@@ -21,9 +23,6 @@ riverctl map normal Super+Shift E exit
 
 # Super+Shift+L to lock river
 riverctl map normal Super+Alt+Shift L spawn "swaylock -i ~/Pictures/walls.jpg"
-
-# Super+D to run wofi
-riverctl map normal Super D spawn "walker -s my"
 
 # Super+J and Super+K to focus the next/previous view in the layout stack
 riverctl map normal Super J focus-view next
@@ -170,20 +169,20 @@ riverctl rule-add -app-id "bar" csd
 riverctl default-layout rivertile
 rivertile -view-padding 7 -outer-padding 7 &
 
-riverctl spawn "wlr-randr --output eDP-1 --scale 1.5"
-riverctl spawn "swaybg -i ~/Pictures/walls.jpeg -m fill"
-riverctl spawn "waybar"
+riverctl spawn "swaybg -i ~/Pictures/walls.png -m fill"
+riverctl spawn "$HOME/.config/river/status"
+riverctl spawn "$HOME/.config/river/bar"
 riverctl spawn "dunst"
 
 riverctl map normal Super P spawn "hyprpicker -a"
-riverctl keyboard-layout -options "grp:caps_toggle" us,ru
-
 riverctl map normal Super f3 spawn "grimshot copy screen"
 riverctl map normal Super f4 spawn "grimshot copy area"
 
+riverctl keyboard-layout -options "grp:caps_toggle" us,ru
+
 # Import the WAYLAND_DISPLAY env var from sway into the systemd user session.
-dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=wlroots
+dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
 
 # Stop any services that are running, so that they receive the new env var when they restart.
-systemctl --user stop pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
-systemctl --user start pipewire-media-session
+systemctl --user stop wireplumber xdg-desktop-portal xdg-desktop-portal-wlr
+systemctl --user start wireplumber
