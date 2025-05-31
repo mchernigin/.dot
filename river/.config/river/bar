@@ -5,12 +5,12 @@ FIFO="$XDG_RUNTIME_DIR/sandbar"
 mkfifo "$FIFO"
 
 while cat "$FIFO"; do :; done | sandbar \
-	-font "Iosevka Nerd Font:size=18" \
+	-font "Iosevka Nerd Font:size=14" \
 	-active-fg-color "#000000" \
-	-active-bg-color "#98971a" \
+	-active-bg-color "#AD8301" \
 	-inactive-fg-color "#ebdbb2" \
 	-inactive-bg-color "#000000" \
 	-urgent-fg-color "#000000" \
 	-urgent-bg-color "#cc241d" \
 	-title-fg-color "#000000" \
-	-title-bg-color "#98971a"
+	-title-bg-color "#AD8301"

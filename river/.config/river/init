@@ -169,6 +169,10 @@ riverctl rule-add -app-id "bar" csd
 riverctl default-layout rivertile
 rivertile -view-padding 7 -outer-padding 7 &
 
+if uname -r | grep -q asahi; then
+    riverctl spawn "wlr-randr --output eDP-1 --scale 1.5"
+fi
+
 riverctl spawn "swaybg -i ~/Pictures/walls.png -m fill"
 riverctl spawn "$HOME/.config/river/status"
 riverctl spawn "$HOME/.config/river/bar"
@@ -177,6 +181,8 @@ riverctl spawn "dunst"
 riverctl map normal Super P spawn "hyprpicker -a"
 riverctl map normal Super f3 spawn "grimshot copy screen"
 riverctl map normal Super f4 spawn "grimshot copy area"
+
+riverctl map normal Super+Shift P spawn "ffplay /dev/video0"
 
 riverctl keyboard-layout -options "grp:caps_toggle" us,ru
 

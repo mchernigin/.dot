@@ -13,12 +13,12 @@ disk() {
 }
 
 datetime() {
-	datetime="$(date "+%a %d %b %I:%M %P")"
+	datetime="$(date "+%a %d %b %H:%M:%S")"
 }
 
 bat() {
-	read -r bat_status </sys/class/power_supply/BAT0/status
-	read -r bat_capacity </sys/class/power_supply/BAT0/capacity
+	read -r bat_status </sys/class/power_supply/macsmc-battery/status
+	read -r bat_capacity </sys/class/power_supply/macsmc-battery/capacity
 	bat="$bat_status $bat_capacity%"
 }
 
@@ -38,14 +38,14 @@ sec=0
 while true; do
 	sleep 1 &
 	wait && {
-		[ $((sec % 15)) -eq 0 ] && memory
-		[ $((sec % 15)) -eq 0 ] && cpu
+		[ $((sec % 1)) -eq 0 ] && memory
+		[ $((sec % 1)) -eq 0 ] && cpu
 		[ $((sec % 15)) -eq 0 ] && disk
-		[ $((sec % 60)) -eq 0 ] && bat
-		[ $((sec % 5)) -eq 0 ] && vol
-		[ $((sec % 5)) -eq 0 ] && datetime
+		[ $((sec % 15)) -eq 0 ] && bat
+		[ $((sec % 1)) -eq 0 ] && vol
+		[ $((sec % 1)) -eq 0 ] && datetime
 
-		[ $((sec % 5)) -eq 0 ] && display
+		[ $((sec % 1)) -eq 0 ] && display
 
 		sec=$((sec + 1))
 	}
