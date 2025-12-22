@@ -1,3 +1,8 @@
-*
-!.gitignore
-!init.el
+auto-save-list
+.cache
+eln-cache
+straight
+tree-sitter
+history
+places
+recentf

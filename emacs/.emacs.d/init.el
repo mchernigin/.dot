@@ -9,6 +9,11 @@
 (setq gc-cons-threshold #x40000000) ;; GC less often
 (setq read-process-output-max (* 1024 1024 4)) ;; Read in 4MB chunks instead of 4KB
 
+(add-to-list 'load-path
+			 (expand-file-name "local" user-emacs-directory))
+(setq backup-directory-alist
+	  `(("." . ,(expand-file-name "backups" user-emacs-directory))))
+
 ;;; Setup straight pacakge manager instead of built-in one
 (setq package-enable-at-startup nil) ;; Disables the default package manager
 (setq straight-check-for-modifications nil)
@@ -33,6 +38,8 @@
 ;;; Built-in packages
 (require 'package) ;; Load functions to operate on packages
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(setq network-security-level 'low) ;; Optional, sometimes helps with handshake speed
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3") ;; Sometimes TLS 1.3 causes hangs on older Emacs
 
 ;; Emacs itself as a package
 (use-package emacs
@@ -258,6 +265,10 @@
 
 ;; treesit-auto should do that instead of me, but is slow as fuck
 (dolist (mapping '((rust-ts-mode       . "\\.rs\\'")
+				   (emacs-lisp-mode    . "\\.el\\'")
+				   (emacs-lisp-mode    . "\\.el\\'")
+				   (c3-ts-mode         . "\\.c3\\'")
+				   (ada-ts-mode        . "\\.ad[bs]\\'")
 				   (json-ts-mode       . "\\.json\\'")
 				   (python-ts-mode     . "\\.py\\'")
 				   (typescript-ts-mode . "\\.ts\\'")
@@ -267,6 +278,10 @@
 				   (json-ts-mode       . "\\.json\\'")
 				   (yaml-ts-mode       . "\\.ya?ml\\'")))
   (add-to-list 'auto-mode-alist (cons (cdr mapping) (car mapping))))
+
+(setq treesit-language-source-alist
+  '((c3 "https://github.com/c3lang/tree-sitter-c3")))
+(require 'c3-ts-mode)
 
 (use-package markdown-mode
   :defer t
@@ -297,7 +312,8 @@
   :hook
   ((rust-ts-mode . eglot-ensure)
    (rust-ts-mode . (lambda ()
-					 (add-hook 'before-save-hook 'eglot-format-buffer nil t))))
+					 (add-hook 'before-save-hook 'eglot-format-buffer nil t)))
+   (c++-mode . eglot-ensure))
   :config
   (setq eglot-sync-connect nil))
 
