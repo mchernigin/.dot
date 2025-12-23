@@ -62,7 +62,7 @@
 	(set-face-attribute 'default nil :family "Iosevka Nerd Font" :height 200)
 	(add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 	(setq ring-bell-function 'ignore))
-  (set-fill-column 100)
+  (setq frame-resize-pixelwise t)
 
   (setq display-line-numbers-type 'relative)
   (global-display-line-numbers-mode t)
@@ -489,6 +489,13 @@
 		#'eldoc-box-help-at-point
 		#'ek/lsp-describe-and-jump))
 
+  (evil-define-key 'normal 'global (kbd "<leader> i h") 'eglot-inlay-hints-mode)
+  (evil-define-key 'normal 'global (kbd "<leader> c a") 'eglot-code-actions)
+  (evil-define-key 'normal 'global (kbd "<leader> r n") 'eglot-rename)
+  (evil-define-key 'normal 'global (kbd "<leader> f b") 'eglot-format-buffer)
+  (evil-define-key 'normal 'global (kbd "<leader> c c") 'compile)
+  (evil-define-key 'normal 'global (kbd "<leader> c r") 'recompile)
+
   ;; Commenting functionality for single and multiple lines
   (evil-define-key 'normal 'global (kbd "gcc")
 				   (lambda ()
@@ -593,21 +600,34 @@
 ;;   :config
 ;;   (load-theme 'gruber-darker :no-confirm))
 
-(use-package flexoki-themes
-  :ensure t
-  :straight t
-  :config
-  (load-theme 'flexoki-themes-dark :no-confirm))
-
-;; (use-package catppuccin-theme
+;; (use-package flexoki-themes
 ;;   :ensure t
 ;;   :straight t
 ;;   :config
-;;   (setq catppuccin-flavor 'mocha)
-;;   (load-theme 'catppuccin :no-confirm))
+;;   (load-theme 'flexoki-themes-dark :no-confirm))
 
-;; Enable colors in compilation mode
-(add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
+
+(if (eq system-type 'darwin)
+  (use-package catppuccin-theme
+    :ensure t
+    :straight t
+    :config
+    (setq catppuccin-flavor 'mocha)
+    (load-theme 'catppuccin :no-confirm))
+  (load-theme modus-vivendi-deuteranopia))
+
+;; Fix escape sequences in compilation mode
+(use-package ansi-color
+  :ensure t
+  :straight t
+  :config
+	(defun colorize-compilation-buffer ()
+	(let ((inhibit-read-only t))
+		(ansi-color-apply-on-region (point-min) (point-max))))
+	(add-hook 'compilation-filter-hook 'colorize-compilation-buffer))
+
+;; Auto scroll in compilation mode
+(setq compilation-scroll-output t)
 
 ;;; UTILITARY FUNCTION TO INSTALL EMACS-KICK
 (defun ek/first-install ()
